@@ -9,5 +9,5 @@ app.use(parser.json({ extended: true }));
 app.use("/user", userRoutes);
 
 app.listen(3001, () => {
-    console.log('server started');
+    console.log('server is running on port 3001');
 })

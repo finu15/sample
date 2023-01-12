@@ -1,5 +1,6 @@
 const User = require('../models/user');
-const {getUserList}= require('../service/userService');
+const {getUserList}= require('../service/user/userGet');
+const {deleteUser} = require('../services/user/userDelete');
 
 /**all user list */
 module.exports.userGetAll = async (req, res, next) => {
@@ -44,15 +45,9 @@ module.exports.updateUserPost = async (req, res, next) => {
 }
 
 /**delete user */
-module.exports.deleteUser = async (req, res, next) => {
-    let id = req.params.id;
-    let user = await User.findByPk(id);
 
-    if (user != null) {
-        await User.destroy({
-            where: {
-                id: id
-            }
-        });
-    }
+
+module.exports.deleteUser = async (req, res, next) => {
+    let data = await getUserList();
+    res.json(data);
 }
